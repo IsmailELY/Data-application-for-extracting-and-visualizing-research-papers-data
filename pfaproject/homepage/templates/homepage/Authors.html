@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AfricArXiv | Auteurs</title>
+</head>
+<body>
+    {% if all_authors %}
+    <h1>Auteurs Actifs sur AfricArXiv:</h1>
+    <ul>
+        {% for auth in all_authors %}
+            <li><a href="/Authors/{{auth.id}}/"><img src="{{auth.image.url}}" width="200">{{auth.Full_Name}} </a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h3> Veuillez recharger la page </h3>
+    {% endif %}
+</body>
+</html>

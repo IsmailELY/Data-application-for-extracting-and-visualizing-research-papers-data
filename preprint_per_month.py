@@ -1,15 +1,16 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import requests
+import urllib3
+import json
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-
-r = requests.get('https://api.osf.io/v2/providers/preprints/africarxiv/preprints/?format=json')
-dict = r.json()
+http = urllib3.PoolManager()
+r = r = http.request('GET','https://api.osf.io/v2/providers/preprints/africarxiv/preprints/?format=json')
+dict = json.loads(r.data.decode('utf-8'))
 # store the Api in a dictionary
 
 x = list()
@@ -35,8 +36,8 @@ while True:
     if flag == 1:
         break
     else:
-        r = requests.get(dict["links"]["next"])
-        dict = r.json()
+        r = http.request('GET',dict["links"]["next"])
+        dict = json.loads(r.data.decode('utf-8'))
         if (dict["links"]["next"] == None):
             flag = 1
 

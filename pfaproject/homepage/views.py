@@ -7,12 +7,12 @@ from django.http import Http404
 
 def home(request):
 
-    http = url.PoolManager()  #To handle all of the details of connection pooling and thread safety
-    r=http.request('GET','https://api.osf.io/v2/providers/preprints/africarxiv/preprints/?format=json')
-    dict = json.loads(r.data.decode('utf-8'))
-    #loading data from the json:api into a dictionary
-
-    #TO_BE_CONTINUED
+    # http = url.PoolManager()  #To handle all of the details of connection pooling and thread safety
+    # r=http.request('GET','https://api.osf.io/v2/providers/preprints/africarxiv/preprints/?format=json')
+    # dict = json.loads(r.data.decode('utf-8'))
+    # #loading data from the json:api into a dictionary
+    #
+    # #TO_BE_CONTINUED
 
     return render(request,'homepage/home.html')
 

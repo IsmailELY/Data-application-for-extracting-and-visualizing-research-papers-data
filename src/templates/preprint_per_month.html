@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+var NumPrep = {{ num }}
+var Alea = {{ alea }}
+var BkGround=[]
+var BrColor=[]
+var Months = '{{ mois }}'
+let mon = Months.substring(6,Months.length-6);
+
+Months = mon.split("&#39;, &#39;");
+
+for(let i = Alea.length-1; i >-1; i--){
+            var color =  String(Alea[i]);
+            BkGround.push("rgba(123," + color + ","+color+", 1)");
+            BrColor.push("rgba(123," + color + ","+color+", 1)");
+
+        };
+
+function setChart(){
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: Months,
+        datasets: [{
+            label: 'Articles publies',
+            data: NumPrep,
+            backgroundColor: BkGround ,
+            borderColor: BrColor,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+}
+setChart();
+{% endblock %}
+</script>
+
+{% block content %}
+<div class="container"  >
+    <h1><small>Articles Publies sur AfricArXiv Par Mois</small></h1>
+</div>
+
+{% endblock content %}
+
+{% block content2 %}
+
+<div class='row'>
+    <div class='col-sm-12'>
+        <canvas id="myChart" width="800" height="400"></canvas>
+    </div>
+</div>
+
+{% endblock content2 %}

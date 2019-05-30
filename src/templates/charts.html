@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+var endpoint = '/api/chart/data/'
+var NumPrep = []
+var Alea = []
+var BkGround=[]
+var BrColor=[]
+var Months = [];
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        Months ='{{ mois }}'
+        NumPrep = {{ num }}
+        Alea= {{ alea }}
+
+        let mon = Months.substring(6,Months.length-6)
+        Months = mon.split("&#39;, &#39;");
+
+
+        for(let i = Alea.length-1; i >-1; i--){
+            var color =  String(Alea[i]);
+            BkGround.push("rgba(123," + color + ","+color+", 1)");
+            BrColor.push("rgba(123," + color + ","+color+", 1)");
+
+
+        };
+
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+
+}
+{% endblock %}
+</script>
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Hello World</h1>
+</div>
+
+{% endblock content %}
+
+{% block content2 %}
+
+<div class='row'>
+    <div class='col-sm-12' url-endpoint='{% url "api-data" %}'>
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="densityCanvas" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+{% endblock content2 %}

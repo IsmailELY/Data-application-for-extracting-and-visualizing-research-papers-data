@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+var endpoint = '/api/chart/data/'
+SUBJ ='{{ Sujets }}'
+OSF = {{ OSF }}
+ARFXIV= {{ AfricArXiv }};
+
+let sjt = SUBJ.substring(6,SUBJ.length-6)
+SUBJ = sjt.split("&#39;, &#39;");
+
+
+var data = {
+            labels: SUBJ,
+            datasets: [{
+                            label: 'OSF',
+                            data: OSF,
+                            backgroundColor: 'lightblue'
+                       },
+                       {
+                            label: 'AfricArXiv',
+                            data: ARFXIV,
+                            backgroundColor: 'maroon'
+                       }
+                    ]
+            }
+function setChart()
+{
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: data ,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+}
+function setChart2()
+{
+
+    var ctx2 = document.getElementById("myChart2");
+    var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: data ,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+}
+setChart();
+setChart2();
+
+
+{% endblock %}
+</script>
+
+{% block content %}
+<div class="container">
+    <h1>Articles publies par domaine (Sujets)</h1>
+</div>
+
+{% endblock content %}
+
+{% block content2 %}
+
+<div class='row'>
+    <div class='col-sm-12' url-endpoint='{% url "api-data" %}'>
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content2 %}

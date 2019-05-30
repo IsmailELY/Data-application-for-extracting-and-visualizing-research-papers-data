@@ -1,6 +1,0 @@
-#!/home/ismail/git_repo/Data-application-for-extracting-and-visualizing-research-papers-data/venv/bin/python
-
-from pif.commands.get_public_ip import main
-
-if __name__ == "__main__":
-    main()

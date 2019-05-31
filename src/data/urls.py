@@ -7,7 +7,8 @@ urlpatterns = [
     url(r'^viz_1/$',views.Preprint_per_month, name='preprints per month'),
     url(r'^viz_2/$',views.Preprint_domination, name='preprints per field'),
     url(r'^viz_3/$',views.Tag_domination, name='Tags per domain'),
-    url(r'^viz_4/$',views.Tag_domination, name='Tags per domain'),
+    url(r'^viz_4/$',views.Authors_division, name='Authors per country'),
+    url(r'^viz_5/$',views.Authors_network, name='Authors network'),
     # serializers
     url(r'^json/Tags/$', views.TagList.as_view()),
     url(r'^json/Preprints/$',views.PreprintList.as_view()),

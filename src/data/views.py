@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404,render_to_response
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
@@ -97,8 +97,8 @@ def home(request):
                     aut.preprints.add(preprint)
 
                 #create the link between authors
-                for id in lk:
-                    aut.relation_authors.add(id)
+                for ide in lk:
+                    aut.relation_authors.add(ide)
                 lk.append(aut)
             preprint.save()
 
@@ -184,7 +184,67 @@ def Tag_domination(request):
 
     return render(request, 'tag_per_subject.html', data)
 
+def Authors_division(request):
 
+    Names = [ Author.objects.get(id=i+1).full_name for i in range(5) ]
+    Prep_Num = [ Author.objects.get(id=i+1).nombre_prep for i in range(5) ]
+    min = Prep_Num[0]
+    idx_min = 0
+    #initializing top authors list attributes
+
+    Countries = list()
+    Author_num = list()
+    rdm = list()
+    #initializing countries attributes
+
+    for aut in Author.objects.all():
+
+        #top 5 authors
+        if min < aut.nombre_prep:
+            Names[idx_min] = aut.full_name
+            Prep_Num[idx_min] = aut.nombre_prep
+            min = aut.nombre_prep
+
+            for j in range(5):
+                if min >= Prep_Num[j]:
+                    min = Prep_Num[j]
+                    idx_min = j
+
+        #countries contribution
+        if aut.region in Countries:
+            index=Countries.index(aut.region)
+            Author_num[index]+=1
+        else:
+            Countries.append(aut.region)
+            Author_num.append(1)
+            rdm.append(random.randint(1, 255))
+
+    data = { 'Region': Countries,'NbrAut': Author_num , 'alea': rdm , 'liste_aut' : Names , 'nbr_art' : Prep_Num}
+
+    return render(request,'author_per_country.html',data)
+
+def Authors_network(request):
+    l_aut = []
+    l_link = []
+    l_name = []
+    l_num = []
+    i=0
+    #initialization
+
+    for aut in Author.objects.all():
+
+        l_aut.append(aut.id)
+        l_name.append(aut.full_name)
+        l_num.append(0)
+
+        for lk in aut.relation_authors.all():
+            l_link.append(lk.id)
+            l_num[i]+=1
+        i+=1
+
+    data ={'authors':l_aut,'num':l_num,'relship':l_link,'names':l_name}
+
+    return render(request,'authors_networks.html',data)
 
 
 

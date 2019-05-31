@@ -1,0 +1,75 @@
+<html>
+<head>
+    {% include 'base/css.html' %}
+    {% include 'base/bootstrap_defaults.html' %}
+    {% include 'base/js.html' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Data visualization of AfricArXiv</title>
+    <style type="text/css">
+        #mynetwork {
+            width: 1600px;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h2><b>Relation entre les differents auteurs d'AfricArXiv</h2>
+</div>
+<div id="mynetwork" class="container"></div>
+
+<script type="text/javascript">
+    // initiate values
+    var IDS={{ authors }}
+
+    var label='{{ names }}'
+    let lbl = label.substring(6,label.length-6);
+    label = lbl.split("&#39;, &#39;");
+
+    var taille = {{ num }}
+
+    var links = {{ relship }}
+
+    //create dict
+
+    id_label = [];
+    id_links = [];
+    var x = 0;
+
+    for(let i = 0; i <IDS.length; i++)
+    {
+        id_label.push({id: IDS[i], label: label[i]});
+        for(let j = x; j < x+taille[i]; j++)
+        {
+            id_links.push({from: IDS[i], to: links[j]});
+        }
+        x+=taille[i]
+    }
+    console.log(id_label)
+    console.log(id_links)
+
+    var nodes = new vis.DataSet(id_label);
+
+    // create an array with edges
+    var edges = new vis.DataSet(id_links);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>

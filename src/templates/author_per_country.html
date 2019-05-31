@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+<script>
+{% block jquery %}
+var Alea = {{ alea }}
+var BkGround=[]
+var Numbers = {{ NbrAut }}
+var Region = '{{ Region }}'
+
+let reg = Region.substring(6,Region.length-6);
+Region = reg.split("&#39;, &#39;");
+
+for(let i = Alea.length-1; i >-1; i--){
+            var color =  String(Alea[i]);
+            BkGround.push("rgba("+color+" , 106 ,"+color + 133*i+",3)");
+        };
+
+function setChart(){
+    var ctx = document.getElementById("myChart");
+    new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: Region,
+      datasets: [{
+        label: "Source de contribution",
+        backgroundColor: BkGround,
+        data: Numbers
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Effectif de contributeurs par region'
+      }
+    }
+});
+
+}
+setChart();
+{% endblock %}
+</script>
+
+{% block content %}
+<div class="container"  >
+    <h1>Auteurs d'AfricArXiv</h1>
+</div>
+
+{% endblock content %}
+
+{% block content2 %}
+
+<div class='row'>
+    <div class='col-sm-8'>
+        <h3 style="text-align: justify;text-align: center;letter-spacing: 3px;">Viz zone source de contribution :</h3>
+        <canvas id="myChart" width="800" height="400"></canvas>
+        <br>
+    </div>
+    <div class='col-sm-4'>
+        <h2 style="text-align: justify;letter-spacing: 3px;">Top 5 auteurs :</h2>
+        <div class="row">
+            <ul>
+                <SCRIPT LANGUAGE="JavaScript">
+                    var Aut_list= '{{ liste_aut }}'
+                    let list = Aut_list.substring(6,Aut_list.length-6);
+                    Aut_list = list.split("&#39;, &#39;");
+                    var Number = {{ nbr_art }}
+                    for (var num=0; num<=4; num++)
+                    {
+                     document.writeln("<BR><BR><LI><strong>Nom :</strong>",Aut_list[num],"  <BR><strong>Numero d'article publie :</strong> ",Number[num]);
+                    }
+                </SCRIPT>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content2 %}

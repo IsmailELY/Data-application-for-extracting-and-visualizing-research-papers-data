@@ -14,15 +14,16 @@ SUBJ = sjt.split("&#39;, &#39;");
 var data = {
             labels: SUBJ,
             datasets: [{
+                            label: 'AfricArXiv',
+                            data: ARFXIV,
+                            backgroundColor: 'maroon'
+                       },
+                       {
                             label: 'OSF',
                             data: OSF,
                             backgroundColor: 'lightblue'
                        },
-                       {
-                            label: 'AfricArXiv',
-                            data: ARFXIV,
-                            backgroundColor: 'maroon'
-                       }
+
                     ]
             }
 function setChart()

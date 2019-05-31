@@ -31,6 +31,14 @@ function setChart(){
             backgroundColor: BkGround ,
             borderColor: BrColor,
             borderWidth: 1
+        },
+        {
+            label: 'Densite de publication',
+            data: NumPrep,
+            backgroundColor: 'darkorange' ,
+
+            // Changes this dataset to become a line
+            type: 'line'
         }]
     },
     options: {
@@ -51,7 +59,7 @@ setChart();
 
 {% block content %}
 <div class="container"  >
-    <h1><small>Articles Publies sur AfricArXiv Par Mois</small></h1>
+    <h2>Articles Publies sur AfricArXiv Par Mois</h2>
 </div>
 
 {% endblock content %}

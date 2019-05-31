@@ -7,7 +7,7 @@ This App retrieves data of AfricArXiv website using OSF API and display some vis
 To know more about this API here is a link to the documentation : https://developer.osf.io #(it may seem long but it guides you for a proper handling of the API) 
 The API link : https://api.osf.io/v2/
 
-The web app contains 6 web app:
+The web platform contains 6 web app:
   - Home page                  localhost:8000/
   - Data visualization         localhost:8000/viz_%i%/        
                                         i can take values from 1 to 5                                          

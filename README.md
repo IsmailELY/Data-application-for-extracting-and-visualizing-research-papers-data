@@ -12,6 +12,6 @@ The web app contains 6 web app:
   - Data visualization         localhost:8000/viz_%i%/        
                                         i can take values from 1 to 5                                          
   - API:JSON                   localhost:8000/json/%Class%  
-                                        class can be Preprints or Authors or Tags or Subjects
+                                        class can be either Preprints or Authors or Tags or Subjects
                                         
 Hope you like it

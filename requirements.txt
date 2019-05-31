@@ -1,6 +1,17 @@
-appdirs==1.4.2
-Django==1.10.6
-djangorestframework==3.5.4
-packaging==16.8
-pyparsing==2.1.10
-six==1.10.0
+appdirs             1.4.2   
+certifi             2019.3.9
+chardet             3.0.4   
+Django              1.10.6  
+djangorestframework 3.5.4   
+idna                2.8     
+numpy               1.16.4  
+packaging           16.8    
+pandas              0.24.2  
+pip                 19.0.3  
+pyparsing           2.1.10  
+python-dateutil     2.8.0   
+pytz                2019.1  
+requests            2.22.0  
+setuptools          40.8.0  
+six                 1.10.0  
+urllib3             1.25.3 

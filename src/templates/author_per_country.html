@@ -30,7 +30,7 @@ function setChart(){
     options: {
       title: {
         display: true,
-        text: 'Effectif de contributeurs par region'
+        text: 'Effectif de contributeurs par région'
       }
     }
 });
@@ -51,12 +51,12 @@ setChart();
 
 <div class='row'>
     <div class='col-sm-8'>
-        <h3 style="text-align: justify;text-align: center;letter-spacing: 3px;">Viz zone source de contribution :</h3>
+        <h3 style="text-align: justify;text-align: center;letter-spacing: 3px;">Zone source de contribution :</h3>
         <canvas id="myChart" width="800" height="400"></canvas>
         <br>
     </div>
     <div class='col-sm-4'>
-        <h2 style="text-align: justify;letter-spacing: 3px;">Top 5 auteurs :</h2>
+        <h2 style="text-align: justify;letter-spacing: 3px;">Top 5 auteurs actifs :</h2>
         <div class="row">
             <ul>
                 <SCRIPT LANGUAGE="JavaScript">
@@ -66,7 +66,7 @@ setChart();
                     var Number = {{ nbr_art }}
                     for (var num=0; num<=4; num++)
                     {
-                     document.writeln("<BR><BR><LI><strong>Nom :</strong>",Aut_list[num],"  <BR><strong>Numero d'article publie :</strong> ",Number[num]);
+                     document.writeln("<BR><BR><LI><strong>Nom :</strong>",Aut_list[num],"  <BR><strong>Numéro d'articles publiés :</strong> ",Number[num]);
                     }
                 </SCRIPT>
             </ul>

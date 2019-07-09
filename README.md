@@ -1,6 +1,6 @@
 ![AfricArXiv Logo](https://storage.googleapis.com/cos-osf-prod-cdn-us/assets/square_color_no_transparent-2.png)                                                             ![OSF Logo](https://www.library.ucla.edu/sites/default/files/media/osf-logo-black.original.png)
 
-# AFRICARXIV  | Data Visualizaion | https://osf.io/preprints/africarxiv/
+# AFRICARXIV  | Data Visualization | https://osf.io/preprints/africarxiv/
 This app is the work of both Elyousfi Ismail and El Fatih Ziad Supervised by Dr Lamia Benhiba.
 
 This App retrieves data of AfricArXiv website using OSF API and display some visualizations in a web platform.

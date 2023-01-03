@@ -8,10 +8,8 @@ To know more about this API here is a link to the documentation : https://develo
 The API link : https://api.osf.io/v2/
 
 The web platform contains 6 web app:
-  - Home page                  localhost:8000/
-  - Data visualization         localhost:8000/viz_%i%/        
-                                        i can take values from 1 to 5                                          
-  - API:JSON                   localhost:8000/json/%Class%  
-                                        class can be either Preprints or Authors or Tags or Subjects
+  - Home page                  
+  - Data visualization                                               
+  - API:JSON                   
                                         
 Hope you like it
